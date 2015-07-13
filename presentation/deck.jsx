@@ -34,9 +34,6 @@ export default class extends React.Component {
           <Heading size={1} fit caps margin="20px 0px 0">
             All the things Javascript
           </Heading>
-          <Heading size={2} fit caps textColor="black">
-            La comunidad barranquillera de Javascript
-          </Heading>
           <Link href="https://github.com/BAQJS">
             <Text bold caps textColor="tertiary">Github: BAQJS</Text>
           </Link>
@@ -47,7 +44,7 @@ export default class extends React.Component {
 
         </Slide>
         <Slide transition={['slide']} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
-          <Image src={images.me.replace('/','')} margin="0px auto 40px" height="200px"/>
+          <Image src={images.me.replace('/','')} style={{border: "1px solid white"}} height="250px"/>
           <Heading size={6} fit textColor="primary">
             Richard Roncancio
           </Heading>
@@ -87,7 +84,7 @@ export default class extends React.Component {
             Uno de los lenguajes mas usados en la actualidad
           </Heading>
           <Appear fid="1">
-            <Image src={images.popular.replace('/','')} height="750px"/>
+            <Image src={images.popular.replace('/','')} height="580px"/>
           </Appear>
         </Slide>
         <Slide transition={["slide"]} bgColor="white">
@@ -95,7 +92,7 @@ export default class extends React.Component {
             Respositorio de Paquetes mas grande, NPM
           </Heading>
           <Appear fid="1">
-            <Image src={images.npm.replace('/','')} height="750px"/>
+            <Image src={images.npm.replace('/','')} height="580px"/>
           </Appear>
         </Slide>
 

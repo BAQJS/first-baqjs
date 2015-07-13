@@ -1,6 +1,6 @@
 module.exports = {
-  width: 1140,
-  height: 'none',
+  width: 1000,
+  height: 700,
   margin: 20,
   theme: require("../themes/default/index"),
   print: require("../themes/default/print"),
