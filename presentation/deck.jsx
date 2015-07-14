@@ -18,7 +18,8 @@ const images = {
   areaDos: require("./areadoslogo.png"),
   koombea: require("./logoKoombea.jpeg"),
   popular: require("./popular.png"),
-  npm: require("./npm.png")
+  npm: require("./npm.png"),
+  fire: require("./fire.gif")
 };
 
 preloader([images.city, images.kat]);
@@ -41,9 +42,9 @@ export default class extends React.Component {
           <Link href="https://twitter.com/BAQJS">
             <Text bold caps textColor="tertiary">Twitter: @BAQ_JS</Text>
           </Link>
-
         </Slide>
-        <Slide transition={['slide']} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
+
+        <Slide transition={['slide']} bgColor="black">
           <Image src={images.me.replace('/','')} style={{border: "1px solid white"}} height="250px"/>
           <Heading size={6} fit textColor="primary">
             Richard Roncancio
@@ -55,6 +56,7 @@ export default class extends React.Component {
             Front End Developer @ Koombea
           </Text>
         </Slide>
+
         <Slide transition={["zoom", "fade"]} bgColor="white">
           <Heading caps fit margin="0 0 40px" textColor="black">Este Evento es traido a ustedes gracias a:</Heading>
           <Layout>
@@ -74,6 +76,7 @@ export default class extends React.Component {
             </Fill>
           </Layout>
         </Slide>
+
         <Slide transition={["slide"]} bgImage={images.city.replace("/", "")} bgDarken={0.75}>
           <Heading size={1} caps fit textColor="primary">
             Porque javascript?
@@ -115,11 +118,11 @@ export default class extends React.Component {
 
         <Slide transition={["zoom"]} bgColor="primary">
           <Heading size={1} fit caps textColor="black">
-            Hace parte integral del
+            Hace parte integral de
           </Heading>
           <Appear fid="1">
           <Heading size={1} fit caps margin="20px 0px 0">
-            Web Platform
+            La Plataforma Web
           </Heading>
           </Appear>
         </Slide>
@@ -143,12 +146,162 @@ export default class extends React.Component {
           </BlockQuote>
         </Slide>
 
-        <Slide transition={['zoom', 'fade']} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
+        <Slide transition={["fade"]} bgColor="secondary" textColor="primary" notes="<ul><li>Javascript fue creado en 10 dias por Brendan Eich</li><li>Ecma script es el nombre oficial del estandar, javascript es una implementacion del estandar, actionscript 3 es otra</li></ul>">
+          <List>
+            <ListItem><Appear fid="1">El Nombre</Appear></ListItem>
+            <ListItem><Appear fid="2">Sintaxis parecida a C</Appear></ListItem>
+            <ListItem><Appear fid="3">Errores de diseño</Appear></ListItem>
+            <ListItem><Appear fid="4">Coerción</Appear></ListItem>
+            <ListItem><Appear fid="5">Orientado a objetos, libre de clases, prototipos</Appear></ListItem>
+          </List>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit caps textColor="black">
+            Objetivos de BAQ.JS
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit caps textColor="black">
+            Entender
+          </Heading>
+          <Appear fid="1">
+            <Heading size={1} fit caps textColor="white">
+              Lo raro
+            </Heading>
+          </Appear>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit caps textColor="black">
+            Sacar provecho
+          </Heading>
+          <Appear fid="1">
+            <Heading size={1} fit caps textColor="white">
+              de lo bueno
+            </Heading>
+          </Appear>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit caps textColor="black">
+            Crear una nueva mentalidad
+          </Heading>
+          <Heading size={1} fit caps textColor="black">
+            Entorno al lenguaje
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="black">
+          <Image src={images.fire.replace('/','')} height="700px"/>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} fit caps textColor="black">
+            Objetos y "this"
+          </Heading>
+          <Heading size={1} fit caps textColor="black">
+            en Javascript
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} caps textColor="black">
+            Pero antes...
+          </Heading>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} caps textColor="black">
+            Lo basico del<br />lenguaje
+          </Heading>
+          <Text bold caps textColor="tertiary">Tipos, Scope, Closures</Text>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary" notes="Aun cuando js no es un lenguaje fuertemente tipado, el estandar define 6 tipos, 5 valores primitivos, 1 de referencia">
+          <Heading size={1} fit caps textColor="black">
+            Tipos en Javascript
+          </Heading>
+        </Slide>
+
+        <Slide transition={["fade", "slide"]} bgColor="secondary" textColor="primary" notes="cada uno de estos tipos definen propiedades y comportamientos diferentes">
+          <List>
+            <ListItem><Appear fid="1">undefined</Appear></ListItem>
+            <ListItem><Appear fid="2">null</Appear></ListItem>
+            <ListItem><Appear fid="3">boolean</Appear></ListItem>
+            <ListItem><Appear fid="4">String</Appear></ListItem>
+            <ListItem><Appear fid="5">Number</Appear></ListItem>
+            <ListItem><Appear fid="6">Object</Appear></ListItem>
+          </List>
+        </Slide>
+
+        <Slide transition={['zoom', 'fade']} bgColor="#23241F">
           <CodePane
             lang="javascript"
-            source={require("raw!./deck.example")}
-            margin="20px auto"/>
+            source={require("raw!./js-types.example")}
+            margin="20px auto"
+            />
         </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary">
+          <Heading size={1} caps textColor="black">
+            Scope:
+          </Heading>
+          <Appear fid="1">
+          <Text bold>
+            Es el conjunto de reglas para almacenar variables en alguna ubicacion, y para luego encontrar esas variables.
+          </Text>
+          </Appear>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary" notes="A diferencia de lo que se cree, js es un lenguaje dinamico, compilado <br /> para js, la compilacion la compilacion ocurre algunos microsegundos antes de que el codigo sea ejecutado">
+          <Text bold caps textColor="tertiary">Fact:</Text>
+          <Heading size={2} caps textColor="black">
+            Javascript es un lenguaje Compilado!
+          </Heading>
+        </Slide>
+
+        <Slide transition={["zoom", "fade"]} bgColor="white"
+          notes="<ul>
+                    <li>asigna la declaracion de variables y funciones a su respectivo scope, dentro de la funcion lo hace recursivamente y asigna las variables a el scope de la funcion.</li>
+                    <li>asigna el rhs al lhs</li>
+                  </ul>"
+        >
+          <Heading size={4} margin="0 0 40px" textColor="black">La ejecucion se divide en:</Heading>
+          <Layout>
+            <Fill>
+              <Appear fid="1">
+                <Heading size={6} caps textColor="black" margin={10}>
+                  Fase de Compilacion
+                </Heading>
+              </Appear>
+            </Fill>
+            <Fill>
+              <Appear fid="2">
+                <Heading size={6} caps textColor="black" margin={10}>
+                  Fase de ejecucion
+                </Heading>
+              </Appear>
+            </Fill>
+          </Layout>
+        </Slide>
+
+
+        <Slide transition={['zoom', 'fade']} bgColor="#23241F">
+          <Appear fid="1">
+            <Text bold caps textColor="tertiary">Una declaración</Text>
+          </Appear>
+          <CodePane
+            lang="javascript"
+            source={require("raw!./scope-basic.example")}
+            margin="20px auto"
+            />
+            <Appear fid="2">
+              <Text bold caps textColor="tertiary">dos operaciones,<br /> declaracion e inicializacion.</Text>
+            </Appear>
+        </Slide>
+
         <Slide transition={["slide"]} bgColor="black">
           <BlockQuote>
             <Quote>Wonderfully formatted quotes</Quote>

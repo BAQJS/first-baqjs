@@ -1,0 +1,8 @@
+typeof "a"; //"string"
+typeof 42; //"number"
+typeof true; //"boolean"
+typeof undefined; //"undefined"
+typeof null; //"object"
+typeof {}; //"object"
+typeof function(){}; //"function"
+// las funciones son un subtipo de "object", Calleable Objects

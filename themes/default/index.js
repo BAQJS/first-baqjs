@@ -132,7 +132,7 @@ module.exports = {
     codePane: {
       pre: {
         margin: "auto",
-        fontSize: "1em",
+        fontSize: "1.5em",
         fontWeight: "normal",
         fontFamily: fonts.tertiary,
         minWidth: "100%",
