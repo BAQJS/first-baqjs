@@ -1,0 +1,14 @@
+function Persona(nombre){
+  var nombre = nombre;
+  function habla(){
+    console.log("Hola, hola, mi nombre es " + nombre);
+  }
+  function setNombre(n){
+    nombre = n;
+  }
+  return {
+    habla: habla
+  }
+}
+
+var richard = Persona("Richard");

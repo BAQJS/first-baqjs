@@ -1,0 +1,9 @@
+function foo(){
+  var a = "Hola";
+  return function(){
+    console.log(a);
+  }
+}
+
+var f = foo();
+f(); //"Hola"

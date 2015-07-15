@@ -1,0 +1,12 @@
+function foo(){
+  var bar = "bar";
+  function bar(){
+    console.log(bar);
+  }
+  bam(baz);
+}
+function bam(fn){
+  fn(); // "bar"
+}
+
+foo();

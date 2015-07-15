@@ -1,0 +1,6 @@
+function Something(){
+  this.name = "Richard"
+}
+
+something = new Something();
+console.log(something.name); //"Richard"

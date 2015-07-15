@@ -21,7 +21,11 @@ const images = {
   npm: require("./npm.png"),
   fire: require("./fire.gif"),
   lexical1: require("./lexical-scope.jpg"),
-  lexical2: require("./lexical-scope-2.jpg")
+  lexical2: require("./lexical-scope-2.jpg"),
+  inheritance: require("./inheritance.png"),
+  delegation: require("./delegation.png"),
+  constructor: require("./constructor-objects.png"),
+  create: require("./create-objects.png")
 };
 
 var imagesArray = Object.keys(images).map((key)=> {return images[key];});
@@ -271,9 +275,9 @@ export default class extends React.Component {
           </Appear>
         </Slide>
 
-        <Slide transition={["slide"]} bgColor="primary" notes="A diferencia de lo que se cree, js es un lenguaje dinamico, compilado <br /> para js, la compilacion la compilacion ocurre algunos microsegundos antes de que el codigo sea ejecutado">
-          <Heading size={2} caps textColor="black">
-            Javascript tiene Scope en funciones unicamente*
+        <Slide transition={["slide"]} bgColor="primary" notes="en ES6 esxiste el block scope con el uso de let">
+          <Heading size={4} caps textColor="black">
+            Javascript maneja solamente* function scope
           </Heading>
         </Slide>
 
@@ -357,15 +361,34 @@ export default class extends React.Component {
           </Layout>
         </Slide>
 
-        <Slide transition={["slide", "spin"]}  bgColor="#23241F" notes="las decisiones sobre como el scope esta compuesto recaen sobre el programador, y cuando se compila, ya este no se puede cambiar">
-          <Heading caps fit size={1} textColor="tertiary">
+        <Slide transition={["slide", "spin"]}  bgColor="#23241F" notes="Concepto basado en la naturaleza compilada del lenguaje, donde las declaraciones son leidas primero, y luego se hace la asignacion en tiempo de ejecucion <br /> en lenguajes interpretados, el interprete no sabe nada de la siguiente linea de codigo">
+          <Heading caps size={1} textColor="tertiary">
             Hoisting
           </Heading>
-          <CodePane
+          <Appear fid="1">
+            <CodePane
+              lang="javascript"
+              source={require("raw!./hoisting.example")}
+              />
+          </Appear>
+          <Appear fid="2">
+            <CodePane
+              lang="javascript"
+              source={require("raw!./hoisting-a.example")}
+              />
+          </Appear>
+          <Appear fid="3">
+            <CodePane
+              lang="javascript"
+              source={require("raw!./hoisting-1.example")}
+              />
+          </Appear>
+          <Appear fid="4">
+            <CodePane
             lang="javascript"
-            source={require("raw!./hoisting.example")}
-            margin="20px auto 0"
+            source={require("raw!./hoisting-1-a.example")}
             />
+          </Appear>
         </Slide>
 
         <Slide transition={["slide", "spin"]} bgColor="primary">
@@ -377,46 +400,220 @@ export default class extends React.Component {
           </Heading>
         </Slide>
 
-        <Slide transition={['slide', 'spin']} bgColor="black" notes="ademas de las variables y funciones dentro de su scope lexico">
-          <Text bold textColor="tertiary">Cada funcion, mientras se ejecuta, tiene una referencia a su contexto de ejecución actual, llamado THIS</Text>
-          <Text bold textColor="tertiary">el keyword this siempre referencia a un objeto de los que se puedan obtener propiedades, no a alguna primitiva</Text>
+        <Slide transition={['slide', 'spin']} bgColor="black" notes="a diferencia del scope lexico, ">
+          <Appear fid="1">
+            <Text bold textColor="tertiary" margin="0 0 20px">Cada funcion, mientras se ejecuta, tiene una referencia a su contexto de ejecución actual, llamado THIS</Text>
+          </Appear>
+          <Appear fid="2">
+            <Text bold textColor="tertiary" margin="0 0 20px">El keyword this siempre referencia a un objeto de los que se puedan obtener propiedades, no a alguna primitiva</Text>
+          </Appear>
+          <Appear fid="3">
+            <Text bold textColor="tertiary" margin="0 0 20px">La decisión de a que objeto referencia el keyword "this" se hace en tiempo de ejecucion, al momento del llamado de la funcion.</Text>
+          </Appear>
         </Slide>
 
-        <Slide transition={["slide", "fade"]} bgColor="black">
-          <BlockQuote>
-            <Quote>Wonderfully formatted quotes</Quote>
-            <Cite>Ken Wheeler</Cite>
-          </BlockQuote>
-        </Slide>
-        <Slide transition={["slide", "spin"]} bgColor="primary">
-          <Heading caps fit size={1} textColor="tertiary">
-            Smooth
+        <Slide transition={["fade", "slide"]} bgColor="secondary" textColor="primary" notes="cada uno de estos tipos definen propiedades y comportamientos diferentes">
+          <Heading caps fit size={1} textColor="">
+            Reglas de asignacion del "this"
           </Heading>
-          <Heading caps fit size={1} textColor="secondary">
-            Combinable Transitions
-          </Heading>
-        </Slide>
-        <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
           <List>
-            <ListItem><Appear fid="1">Inline style based theme system</Appear></ListItem>
-            <ListItem><Appear fid="2">Autofit text</Appear></ListItem>
-            <ListItem><Appear fid="3">Flexbox layout system</Appear></ListItem>
-            <ListItem><Appear fid="4">React-Router navigation</Appear></ListItem>
-            <ListItem><Appear fid="5">PDF export</Appear></ListItem>
-            <ListItem><Appear fid="6">And...</Appear></ListItem>
+            <ListItem><Appear fid="1">default binding: el "this" hace referencia al objeto global*</Appear></ListItem>
+            <ListItem><Appear fid="2">implicit binding: la funcion fue llamada dentro de un objeto contenedor</Appear></ListItem>
+            <ListItem><Appear fid="3">explicit binding: fue llamada con .call() o .apply()</Appear></ListItem>
+            <ListItem><Appear fid="4">la funcion fue llamada con el new keyword</Appear></ListItem>
           </List>
         </Slide>
-        <Slide transition={["slide"]} bgColor="primary">
-          <Heading size={1} caps fit textColor="tertiary">
-            Your presentations are interactive
-          </Heading>
-          <Interactive/>
+
+        <Slide transition={['slide', 'spin']} bgColor="#23241F" notes="empezar a ver el codigo de una manera diferente">
+          <Text bold caps textColor="tertiary">Default Binding</Text>
+          <CodePane
+            lang="javascript"
+            source={require("raw!./this-default.example")}
+            margin="20px auto 0"
+            />
         </Slide>
+
+        <Slide transition={['slide', 'spin']} bgColor="#23241F" notes="empezar a ver el codigo de una manera diferente">
+          <Text bold caps textColor="tertiary">Implicit Binding</Text>
+          <CodePane
+            lang="javascript"
+            source={require("raw!./this-implicit.example")}
+            margin="20px auto 0"
+            />
+        </Slide>
+
+        <Slide transition={['slide', 'spin']} bgColor="#23241F" notes="empezar a ver el codigo de una manera diferente">
+          <Text bold caps textColor="tertiary">Explicit Binding</Text>
+          <CodePane
+            lang="javascript"
+            source={require("raw!./this-explicit.example")}
+            margin="20px auto 0"
+            />
+        </Slide>
+
+        <Slide transition={['slide', 'spin']} bgColor="#23241F" notes="empezar a ver el codigo de una manera diferente">
+          <Text bold caps textColor="tertiary">New Binding</Text>
+          <CodePane
+            lang="javascript"
+            source={require("raw!./this-new.example")}
+            margin="20px auto 0"
+            />
+        </Slide>
+
+        <Slide transition={["fade", "slide"]} bgColor="secondary" textColor="primary" notes="cada uno de estos tipos definen propiedades y comportamientos diferentes">
+          <Heading caps fit size={1} textColor="">
+            new Operator
+          </Heading>
+          <List>
+            <ListItem><Appear fid="1">Crea un nuevo objeto</Appear></ListItem>
+            <ListItem><Appear fid="2">El nuevo objeto es linkeado al prototipo de la funcion (Un objeto)</Appear></ListItem>
+            <ListItem><Appear fid="3">El objeto recien creado es atabado como el "this" para es llamado de esa funcion</Appear></ListItem>
+            <ListItem><Appear fid="4">El llamado a la funcion retorna el objeto recientemente construido</Appear></ListItem>
+          </List>
+        </Slide>
+
+        <Slide transition={["fade", "slide"]} bgColor="secondary" textColor="primary" notes="cada uno de estos tipos definen propiedades y comportamientos diferentes">
+          <Heading caps fit size={1} textColor="">
+            Confusiones generadas por el "this"
+          </Heading>
+          <List>
+            <ListItem><Appear fid="1">Asumir que el "this" hace referencia a la funcion en si misma</Appear></ListItem>
+            <ListItem><Appear fid="2">Acceder al scope (lexico) de la funcion</Appear></ListItem>
+          </List>
+        </Slide>
+
+        <Slide transition={['slide', 'spin']} bgColor="#23241F" notes="empezar a ver el codigo de una manera diferente">
+          <Text bold caps textColor="tertiary">Closures</Text>
+          <Text textColor="tertiary">es cuando una funcion "recuerda" su scope lexico aun cuando la funcion es ejecutada fuera de ese scope lexico.</Text>
+          <CodePane
+            lang="javascript"
+            source={require("raw!./closures.example")}
+            margin="20px auto 0"
+            />
+        </Slide>
+
+        <Slide transition={['slide', 'spin']} bgColor="#23241F" notes="empezar a ver el codigo de una manera diferente">
+          <Text bold caps textColor="tertiary">Closures</Text>
+          <CodePane
+            lang="javascript"
+            source={require("raw!./closures-2.example")}
+            margin="20px auto 0"
+            />
+        </Slide>
+
+        <Slide transition={["fade", "slide"]} bgColor="secondary" textColor="primary" notes="cada uno de estos tipos definen propiedades y comportamientos diferentes">
+          <Heading caps fit size={1} textColor="">
+            Como Construir objetos en JS
+          </Heading>
+        </Slide>
+
+        <Slide transition={["fade", "slide"]} bgColor="#23241F" textColor="primary" notes="cada uno de estos tipos definen propiedades y comportamientos diferentes">
+          <Heading caps fit size={5} textColor="white">
+            Object Literal
+          </Heading>
+
+          <CodePane
+            lang="javascript"
+            source={require("raw!./object-literal.example")}
+            margin="20px auto 0"
+            />
+        </Slide>
+
+        <Slide transition={["fade", "slide"]} bgColor="#23241F" textColor="primary" notes="cada uno de estos tipos definen propiedades y comportamientos diferentes">
+          <Heading caps fit size={5} textColor="white">
+            Factory Function
+          </Heading>
+
+          <CodePane
+            lang="javascript"
+            source={require("raw!./factory-function.example")}
+            margin="20px auto 0"
+            />
+        </Slide>
+
+        <Slide transition={["fade", "slide"]} bgColor="secondary" textColor="primary" notes="cada uno de estos tipos definen propiedades y comportamientos diferentes">
+          <Heading caps fit size={5} textColor="white">
+            prototype (Objetos linkeados a otros objetos)
+          </Heading>
+          <Heading caps fit size={5} textColor="white">
+            Behavior Delegation
+          </Heading>
+        </Slide>
+
+        <Slide transition={["fade", "slide"]} bgColor="secondary" textColor="primary" notes="esto hace que la semantica del lenguaje cambie completamente">
+          <Heading fit size={5} textColor="white">
+            Las clases
+          </Heading>
+          <Appear fid="1">
+            <Heading caps fit size={5} textColor="white">
+              No Existen en JS
+            </Heading>
+          </Appear>
+        </Slide>
+
+        <Slide transition={["fade", "slide"]} bgColor="secondary" textColor="primary">
+          <Heading fit size={5} textColor="white">
+            La Herencia
+          </Heading>
+          <Appear fid="1">
+            <Heading caps fit size={5} textColor="white">
+              No Existe en JS
+            </Heading>
+          </Appear>
+        </Slide>
+
+        <Slide transition={["zoom", "fade"]} bgColor="white">
+          <Heading size={5} margin="0 0 40px" textColor="black">
+            Lo que realmente importa es que dos objetos terminen vinculados uno a otro a través del [[prototype]] chain
+          </Heading>
+        </Slide>
+
+        <Slide transition={["zoom", "fade"]} bgColor="white">
+          <Heading size={5} margin="0 0 40px" textColor="black">Herencia Vs Delegacion</Heading>
+          <Layout>
+            <Fill>
+              <Image src={images.inheritance.replace('/','')} margin="0px auto 40px" height="300px"/>
+            </Fill>
+            <Fill>
+              <Image src={images.delegation.replace('/','')} margin="0px auto 40px" height="300px"/>
+            </Fill>
+          </Layout>
+        </Slide>
+
+        <Slide transition={["fade", "slide"]} bgColor="#23241F" textColor="primary" notes="cada uno de estos tipos definen propiedades y comportamientos diferentes">
+          <Text bold caps textColor="tertiary">Function constructor</Text>
+
+          <CodePane
+            lang="javascript"
+            source={require("raw!./object-constructor.example")}
+            margin="0 auto 0"
+            />
+        </Slide>
+
+        <Slide transition={["zoom", "fade"]} bgColor="white">
+          <Heading size={5} margin="0 0 40px" textColor="black">Function constructor chain</Heading>
+          <Image src={images.constructor.replace('/','')} margin="0px auto 40px" height="650px"/>
+        </Slide>
+
+        <Slide transition={["fade", "slide"]} bgColor="#23241F" textColor="primary" notes="cada uno de estos tipos definen propiedades y comportamientos diferentes">
+          <Text bold caps textColor="tertiary">Object.create()</Text>
+
+          <CodePane
+            lang="javascript"
+            source={require("raw!./object-delegation.example")}
+            margin="0 auto 0"
+            />
+        </Slide>
+
+        <Slide transition={["zoom", "fade"]} bgColor="white">
+          <Heading size={5} margin="0 0 40px" textColor="black">Object.create chain</Heading>
+          <Image src={images.create.replace('/','')} margin="0px auto 40px" height="650px"/>
+        </Slide>
+
         <Slide transition={["spin", "slide"]} bgColor="tertiary">
           <Heading size={1} caps fit textColor="primary">
-            Made with love in Seattle by
+            Gracias!
           </Heading>
-          <Link href="http://www.formidablelabs.com"><Image width="100%" src={images.logo}/></Link>
         </Slide>
       </Deck>
     );

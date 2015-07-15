@@ -1,0 +1,6 @@
+var persona = {
+  nombre: "richard",
+  habla: function habla(){
+    console.log("hola, hola");
+  }
+}
