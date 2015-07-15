@@ -19,10 +19,14 @@ const images = {
   koombea: require("./logoKoombea.jpeg"),
   popular: require("./popular.png"),
   npm: require("./npm.png"),
-  fire: require("./fire.gif")
+  fire: require("./fire.gif"),
+  lexical1: require("./lexical-scope.jpg"),
+  lexical2: require("./lexical-scope-2.jpg")
 };
 
-preloader([images.city, images.kat]);
+var imagesArray = Object.keys(images).map((key)=> {return images[key];});
+
+preloader(imagesArray);
 
 export default class extends React.Component {
   render() {
@@ -139,6 +143,13 @@ export default class extends React.Component {
           </Appear>
         </Slide>
 
+
+        <Slide transition={["zoom", "slide"]} bgColor="primary">
+          <Heading size={2} fit caps textColor="black">
+            Pero...
+          </Heading>
+        </Slide>
+
         <Slide transition={["slide"]} bgColor="black">
           <BlockQuote>
             <Quote>El lenguaje de programacion Menos comprendido del mundo</Quote>
@@ -148,8 +159,8 @@ export default class extends React.Component {
 
         <Slide transition={["fade"]} bgColor="secondary" textColor="primary" notes="<ul><li>Javascript fue creado en 10 dias por Brendan Eich</li><li>Ecma script es el nombre oficial del estandar, javascript es una implementacion del estandar, actionscript 3 es otra</li></ul>">
           <List>
-            <ListItem><Appear fid="1">El Nombre</Appear></ListItem>
-            <ListItem><Appear fid="2">Sintaxis parecida a C</Appear></ListItem>
+            <ListItem><Appear fid="1">El Nombre del lenguaje</Appear></ListItem>
+            <ListItem><Appear fid="2">Lenguaje tipo LISP disfrazado de C</Appear></ListItem>
             <ListItem><Appear fid="3">Errores de diseño</Appear></ListItem>
             <ListItem><Appear fid="4">Coerción</Appear></ListItem>
             <ListItem><Appear fid="5">Orientado a objetos, libre de clases, prototipos</Appear></ListItem>
@@ -244,15 +255,26 @@ export default class extends React.Component {
             />
         </Slide>
 
-        <Slide transition={["slide"]} bgColor="primary">
+        <Slide transition={["slide"]} bgColor="primary" notes="que busca: referencias de variables, donde busca: en los diferentes scopes">
           <Heading size={1} caps textColor="black">
             Scope:
           </Heading>
           <Appear fid="1">
           <Text bold>
-            Es el conjunto de reglas para almacenar variables en alguna ubicacion, y para luego encontrar esas variables.
+            Es el conjunto de reglas para almacenar y buscar variables en alguna ubicacion.
           </Text>
           </Appear>
+          <Appear fid="2">
+          <Text bold textColor="white">
+            "Que Buscar", "Donde Buscar"
+          </Text>
+          </Appear>
+        </Slide>
+
+        <Slide transition={["slide"]} bgColor="primary" notes="A diferencia de lo que se cree, js es un lenguaje dinamico, compilado <br /> para js, la compilacion la compilacion ocurre algunos microsegundos antes de que el codigo sea ejecutado">
+          <Heading size={2} caps textColor="black">
+            Javascript tiene Scope en funciones unicamente*
+          </Heading>
         </Slide>
 
         <Slide transition={["slide"]} bgColor="primary" notes="A diferencia de lo que se cree, js es un lenguaje dinamico, compilado <br /> para js, la compilacion la compilacion ocurre algunos microsegundos antes de que el codigo sea ejecutado">
@@ -260,6 +282,9 @@ export default class extends React.Component {
           <Heading size={2} caps textColor="black">
             Javascript es un lenguaje Compilado!
           </Heading>
+          <Link href="https://www.youtube.com/watch?v=UJPdhx5zTaw">
+            <Text bold fontSize={20}>Breaking the JavaScript Speed Limit with V8</Text>
+          </Link>
         </Slide>
 
         <Slide transition={["zoom", "fade"]} bgColor="white"
@@ -268,7 +293,7 @@ export default class extends React.Component {
                     <li>asigna el rhs al lhs</li>
                   </ul>"
         >
-          <Heading size={4} margin="0 0 40px" textColor="black">La ejecucion se divide en:</Heading>
+          <Heading size={5} margin="0 0 40px" textColor="black">La ejecucion de un archivo .js se divide en:</Heading>
           <Layout>
             <Fill>
               <Appear fid="1">
@@ -288,21 +313,76 @@ export default class extends React.Component {
         </Slide>
 
 
-        <Slide transition={['zoom', 'fade']} bgColor="#23241F">
+        <Slide transition={['slide', 'spin']} bgColor="#23241F" notes="empezar a ver el codigo de una manera diferente">
           <Appear fid="1">
-            <Text bold caps textColor="tertiary">Una declaración</Text>
+            <Text bold caps textColor="tertiary">Un statement</Text>
           </Appear>
           <CodePane
             lang="javascript"
             source={require("raw!./scope-basic.example")}
-            margin="20px auto"
+            margin="20px auto 0"
             />
             <Appear fid="2">
-              <Text bold caps textColor="tertiary">dos operaciones,<br /> declaracion e inicializacion.</Text>
+              <Text bold caps textColor="tertiary">dos operaciones diferentes,<br /> declaracion e inicializacion.</Text>
             </Appear>
         </Slide>
 
-        <Slide transition={["slide"]} bgColor="black">
+        <Slide transition={['slide', 'spin']} bgColor="#23241F" notes="basados en estos conceptos...">
+          <Text bold caps textColor="tertiary">Conversacion <br /> Engine, Scope</Text>
+          <CodePane
+            lang="javascript"
+            source={require("raw!./scope-basic-2.example")}
+            margin="20px auto 0"
+            />
+            <Text bold caps textColor="tertiary">LHS(objetivo de la asignacion),<br /> RHS(fuente de la asignacion)</Text>
+        </Slide>
+
+        <Slide transition={["slide", "spin"]} bgColor="primary" notes="las decisiones sobre como el scope esta compuesto recaen sobre el programador, y cuando se compila, ya este no se puede cambiar">
+          <Heading caps fit size={1} textColor="tertiary">
+            Scope Lexico:
+          </Heading>
+          <Heading caps fit size={1} textColor="secondary">
+            Scope de tiempo de compilacion
+          </Heading>
+        </Slide>
+
+        <Slide transition={["zoom", "fade"]} bgColor="white">
+          <Layout>
+            <Fill>
+              <Image src={images.lexical1.replace('/','')} margin="0px auto 40px" height="300px"/>
+            </Fill>
+            <Fill>
+              <Image src={images.lexical2.replace('/','')} margin="0px auto 40px" height="500px"/>
+            </Fill>
+          </Layout>
+        </Slide>
+
+        <Slide transition={["slide", "spin"]}  bgColor="#23241F" notes="las decisiones sobre como el scope esta compuesto recaen sobre el programador, y cuando se compila, ya este no se puede cambiar">
+          <Heading caps fit size={1} textColor="tertiary">
+            Hoisting
+          </Heading>
+          <CodePane
+            lang="javascript"
+            source={require("raw!./hoisting.example")}
+            margin="20px auto 0"
+            />
+        </Slide>
+
+        <Slide transition={["slide", "spin"]} bgColor="primary">
+          <Heading caps fit size={1} textColor="secondary">
+            THIS
+          </Heading>
+          <Heading caps fit size={2} textColor="tertiary">
+            keyword
+          </Heading>
+        </Slide>
+
+        <Slide transition={['slide', 'spin']} bgColor="black" notes="ademas de las variables y funciones dentro de su scope lexico">
+          <Text bold textColor="tertiary">Cada funcion, mientras se ejecuta, tiene una referencia a su contexto de ejecución actual, llamado THIS</Text>
+          <Text bold textColor="tertiary">el keyword this siempre referencia a un objeto de los que se puedan obtener propiedades, no a alguna primitiva</Text>
+        </Slide>
+
+        <Slide transition={["slide", "fade"]} bgColor="black">
           <BlockQuote>
             <Quote>Wonderfully formatted quotes</Quote>
             <Cite>Ken Wheeler</Cite>

@@ -1,0 +1,15 @@
+var foo = "baz";
+
+function bar(){
+  var foo = "baz"
+}
+
+function baz(foo){
+  foo = "bam";
+  bam = "Yeah!"
+}
+
+bar();
+baz(2);
+console.log(foo); // "baz"
+console.log(bam); // "Yeah!"
