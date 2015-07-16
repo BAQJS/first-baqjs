@@ -36,6 +36,7 @@ export default class extends React.Component {
   render() {
     return (
       <Deck transition={["zoom", "slide"]} transitionDuration={800}>
+
         <Slide transition={["slide"]} bgColor="primary">
           <Heading size={1} fit caps textColor="black">
             BAQ.JS
@@ -73,14 +74,12 @@ export default class extends React.Component {
                 Koombea
               </Heading>
               <Image src={images.koombea.replace('/','')} margin="0px auto 40px" height="300px"/>
-              <Text bold textColor="black">Refrigerios</Text>
             </Fill>
             <Fill>
               <Heading size={4} caps textColor="black" margin={10}>
                 AreaDos
               </Heading>
               <Image src={images.areaDos.replace('/','')} margin="0px auto 40px" height="300px"/>
-              <Text bold textColor="black">Lugar</Text>
             </Fill>
           </Layout>
         </Slide>
@@ -615,6 +614,21 @@ export default class extends React.Component {
             Gracias!
           </Heading>
         </Slide>
+        <Slide transition={["slide"]} bgColor="primary">
+          <Link href="http://eloquentjavascript.net/">
+            <Text bold caps textColor="tertiary">Eloquent Javascript</Text>
+          </Link>
+          <Link href="http://jsforcats.com/">
+            <Text bold caps textColor="tertiary">Javascript for Cats</Text>
+          </Link>
+          <Link href="https://github.com/getify/You-Dont-Know-JS">
+            <Text bold caps textColor="tertiary">You don't know javascript</Text>
+          </Link>
+          <Link href="http://davidwalsh.name/javascript-objects">
+            <Text bold caps textColor="tertiary">Javascript Objects</Text>
+          </Link>
+        </Slide>
+
       </Deck>
     );
   }
